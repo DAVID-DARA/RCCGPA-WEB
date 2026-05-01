@@ -1,0 +1,47 @@
+{
+  "name": "rccgpa-web",
+  "version": "1.0.0",
+  "description": "Website for RCCGPA",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DAVID-DARA/RCCGPA-WEB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DAVID-DARA/RCCGPA-WEB/issues"
+  },
+  "homepage": "https://github.com/DAVID-DARA/RCCGPA-WEB#readme",
+  "dependencies": {
+    "@portabletext/react": "^6.0.3",
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-navigation-menu": "^1.2.14",
+    "@sanity/image-url": "^2.1.1",
+    "clsx": "^2.1.1",
+    "groq": "^5.23.0",
+    "lucide-react": "^1.14.0",
+    "next": "^16.2.4",
+    "next-sanity": "^12.3.2",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.4",
+    "postcss": "^8.5.12",
+    "tailwindcss": "^4.2.4",
+    "typescript": "^6.0.3"
+  }
+}
