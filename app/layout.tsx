@@ -17,7 +17,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <html lang="en">
       <body>
         <Navbar settings={settings} />
-        <main>{children}</main>
+        <main className="pt-20">{children}</main>
         <Footer settings={settings} />
       </body>
     </html>
