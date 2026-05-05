@@ -12,7 +12,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
   const bg = hero.backgroundImage ? urlFor(hero.backgroundImage)?.width(1920).height(1080).url() : null;
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#111111] text-white">
+    <section data-hero-section className="relative -mt-20 isolate overflow-hidden bg-[#111111] text-white">
       {bg ? (
         <Image src={bg} alt={hero.backgroundImage?.alt || hero.title} fill priority className="-z-20 object-cover opacity-35" />
       ) : null}
