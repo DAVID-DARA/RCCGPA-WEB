@@ -36,7 +36,16 @@ const fallbackData = {
 };
 
 export default async function HomePage() {
-  const data = (await getHomepageData()) || fallbackData;
+  const sanityData = await getHomepageData();
+  const data = {
+    settings: sanityData?.settings ?? fallbackData.settings,
+    hero: sanityData?.hero ?? fallbackData.hero,
+    liveStream: sanityData?.liveStream ?? fallbackData.liveStream,
+    featuredVideo: sanityData?.featuredVideo ?? fallbackData.featuredVideo,
+    events: sanityData?.events ?? fallbackData.events,
+    posts: sanityData?.posts ?? fallbackData.posts,
+    giveCta: sanityData?.giveCta ?? fallbackData.giveCta
+  };
 
   return (
     <>

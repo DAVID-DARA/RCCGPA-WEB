@@ -12,6 +12,15 @@ export type Cta = {
   href: string;
 };
 
+export type HeroSlide = {
+  _key?: string;
+  title?: string;
+  subtitle?: string;
+  image: SanityImage;
+  primaryCta?: Cta;
+  secondaryCta?: Cta;
+};
+
 export type SiteSettings = {
   title: string;
   tagline: string;
@@ -26,6 +35,7 @@ export type HeroContent = {
   primaryCta: Cta;
   secondaryCta?: Cta;
   backgroundImage?: SanityImage;
+  slides?: HeroSlide[];
 };
 
 export type VideoContent = {

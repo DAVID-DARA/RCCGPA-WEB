@@ -26,7 +26,15 @@ const homepageQuery = groq`
       subtitle,
       primaryCta{label, href},
       secondaryCta{label, href},
-      backgroundImage
+      backgroundImage,
+      slides[]{
+        _key,
+        title,
+        subtitle,
+        image,
+        primaryCta{label, href},
+        secondaryCta{label, href}
+      }
     },
     "liveStream": *[_type == "homepage"][0].liveStream{
       title,
