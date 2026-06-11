@@ -16,6 +16,18 @@ Production-ready Next.js frontend for RCCG Peace Assembly, built with:
 4. Start dev server:
    - `npm run dev`
 
+## Sanity Studio
+
+The Studio is intentionally not embedded in the public Next.js app. Run it locally with:
+
+- `npm run studio`
+
+Deploy the Studio to Sanity hosting with:
+
+- `npm run studio:deploy`
+
+Use Sanity project members and roles in the Sanity dashboard to control who can edit content.
+
 ## Routes
 
 - `/`

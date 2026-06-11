@@ -12,7 +12,6 @@ export default defineConfig({
   title: "RCCG Peace Assembly",
   projectId,
   dataset,
-  basePath: "/studio",
   plugins: [
     structureTool({
       structure: (S) =>
