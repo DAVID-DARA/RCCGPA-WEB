@@ -2,6 +2,82 @@
 
 :root {
   color-scheme: light;
+  --color-primary: #276c63;
+  --color-primary-hover: #1f5952;
+  --color-secondary: #36554f;
+  --color-secondary-strong: #203b36;
+  --color-accent: #ac533b;
+  --color-ink: #27332f;
+  --color-muted: #5e6a64;
+  --color-paper: #fffefa;
+  --color-surface: #f6f3eb;
+  --color-border: #e5e1d7;
+}
+
+/* Change the data-color-scheme value on the body to switch the whole site palette. */
+body[data-color-scheme="harbor"] {
+  --color-primary: #276c63;
+  --color-primary-hover: #1f5952;
+  --color-secondary: #36554f;
+  --color-secondary-strong: #203b36;
+  --color-accent: #ac533b;
+  --color-ink: #27332f;
+  --color-muted: #5e6a64;
+  --color-paper: #fffefa;
+  --color-surface: #f6f3eb;
+  --color-border: #e5e1d7;
+}
+
+body[data-color-scheme="peace"] {
+  --color-primary: #b5122a;
+  --color-primary-hover: #8f1023;
+  --color-secondary: #173b68;
+  --color-secondary-strong: #102b4c;
+  --color-accent: #ae3847;
+  --color-ink: #17212f;
+  --color-muted: #566273;
+  --color-paper: #ffffff;
+  --color-surface: #f3f6fa;
+  --color-border: #dfe5eb;
+}
+
+body[data-color-scheme="garden"] {
+  --color-primary: #2f6b55;
+  --color-primary-hover: #255641;
+  --color-secondary: #456b5b;
+  --color-secondary-strong: #29483a;
+  --color-accent: #92533a;
+  --color-ink: #28352e;
+  --color-muted: #5b6b61;
+  --color-paper: #fffefb;
+  --color-surface: #f1f5ef;
+  --color-border: #dfe7de;
+}
+
+body[data-color-scheme="sunrise"] {
+  --color-primary: #b9563d;
+  --color-primary-hover: #98452f;
+  --color-secondary: #594a68;
+  --color-secondary-strong: #3b3047;
+  --color-accent: #845600;
+  --color-ink: #352f2d;
+  --color-muted: #6b625e;
+  --color-paper: #fffdf9;
+  --color-surface: #f8f0e6;
+  --color-border: #eadfd1;
+}
+
+body[data-color-scheme="lavender"] {
+  --color-primary: #635b91;
+  --color-primary-hover: #504977;
+  --color-secondary: #58627d;
+  --color-secondary-strong: #384258;
+  --color-accent: #98525a;
+  --color-ink: #31313d;
+  --color-muted: #686878;
+  --color-paper: #fffdfb;
+  --color-surface: #f3f0f7;
+  --color-border: #e2ddea;
 }
 
 * {
@@ -13,9 +89,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: Inter, Arial, Helvetica, sans-serif;
-  background: #ffffff;
-  color: #111111;
+  background: var(--color-paper);
+  color: var(--color-ink);
 }
+
+::selection { background: var(--color-primary); color: white; }
+*:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
 
 a {
   color: inherit;

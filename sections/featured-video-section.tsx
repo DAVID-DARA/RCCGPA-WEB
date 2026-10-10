@@ -9,10 +9,10 @@ type FeaturedVideoSectionProps = {
 
 export function FeaturedVideoSection({ data }: FeaturedVideoSectionProps) {
   return (
-    <section className="bg-[#111111] text-white">
+    <section className="bg-[var(--color-secondary-strong)] text-white">
       <SectionWrapper className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
         <div className="space-y-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#D4AF37]">Featured Sermon</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-red-200">Featured Sermon</p>
           <h2 className="text-3xl font-bold leading-tight md:text-5xl">{data.title}</h2>
           {data.description ? <p className="text-base leading-relaxed text-white/80">{data.description}</p> : null}
           {data.cta ? (

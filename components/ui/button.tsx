@@ -10,9 +10,9 @@ type ButtonProps = {
 };
 
 const styles = {
-  primary: "bg-[#D4AF37] text-[#111111] hover:bg-[#c49f28]",
+  primary: "bg-[var(--color-primary)] text-white hover:brightness-90",
   secondary: "bg-transparent text-white ring-1 ring-white/70 hover:bg-white/10",
-  ghost: "bg-transparent text-[#111111] ring-1 ring-[#111111]/30 hover:bg-black/5"
+  ghost: "bg-transparent text-[var(--color-secondary)] ring-1 ring-[var(--color-secondary)]/35 hover:bg-[var(--color-secondary)]/5"
 };
 
 export function Button({ href, children, variant = "primary", className }: ButtonProps) {

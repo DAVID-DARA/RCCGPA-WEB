@@ -26,9 +26,9 @@ export default async function WatchPage() {
   return (
     <>
       <SectionWrapper className="space-y-4 pb-8">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#A57C00]">Watch</p>
-        <h1 className="text-4xl font-bold text-[#111111] md:text-6xl">{page.pageTitle}</h1>
-        <p className="text-lg text-[#444444]">{page.pageIntro}</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Watch</p>
+        <h1 className="text-4xl font-bold text-[var(--color-secondary-strong)] md:text-6xl">{page.pageTitle}</h1>
+        <p className="text-lg text-[var(--color-muted)]">{page.pageIntro}</p>
       </SectionWrapper>
       <LiveStreamSection data={page.liveStream} />
       <FeaturedVideoSection data={page.featuredVideo} />

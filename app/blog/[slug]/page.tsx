@@ -20,11 +20,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   return (
     <SectionWrapper className="max-w-4xl space-y-8">
       <div className="space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#A57C00]">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">
           {new Date(post.publishedAt).toLocaleDateString()}
         </p>
-        <h1 className="text-4xl font-bold text-[#111111] md:text-6xl">{post.title}</h1>
-        <p className="text-lg leading-relaxed text-[#444444]">{post.excerpt}</p>
+        <h1 className="text-4xl font-bold text-[var(--color-secondary-strong)] md:text-6xl">{post.title}</h1>
+        <p className="text-lg leading-relaxed text-[var(--color-muted)]">{post.excerpt}</p>
       </div>
       {imageUrl ? (
         <Image src={imageUrl} alt={post.coverImage?.alt || post.title} width={1280} height={720} className="rounded-2xl object-cover" />

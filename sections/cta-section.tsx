@@ -12,13 +12,13 @@ type CtaSectionProps = {
 
 export function CtaSection({ title, description, cta }: CtaSectionProps) {
   return (
-    <section className="bg-[#D4AF37]">
+    <section className="bg-[var(--color-primary)]">
       <SectionWrapper className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
         <div className="space-y-4">
-          <h2 className="text-3xl font-bold text-[#111111] md:text-4xl">{title}</h2>
-          <p className="max-w-3xl text-base leading-relaxed text-[#2A2A2A]">{description}</p>
+          <h2 className="text-3xl font-bold text-white md:text-4xl">{title}</h2>
+          <p className="max-w-3xl text-base leading-relaxed text-white/85">{description}</p>
         </div>
-        <Button href={cta.href} variant="ghost" className="border border-[#111111] ring-0">
+        <Button href={cta.href} variant="secondary" className="border border-white/70">
           {cta.label}
         </Button>
       </SectionWrapper>

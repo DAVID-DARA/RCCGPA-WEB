@@ -3,6 +3,7 @@ import { givePage } from "./documents/givePage";
 import { homepage } from "./documents/homepage";
 import { post } from "./documents/post";
 import { siteSettings } from "./documents/siteSettings";
+import { seasonalCampaign } from "./documents/seasonalCampaign";
 import { visitPage } from "./documents/visitPage";
 import { watchPage } from "./documents/watchPage";
 import { cta } from "./objects/cta";
@@ -14,6 +15,7 @@ export const schemaTypes = [
   imageWithAlt,
   videoBlock,
   siteSettings,
+  seasonalCampaign,
   homepage,
   post,
   event,

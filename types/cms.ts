@@ -25,6 +25,7 @@ export type SiteSettings = {
   title: string;
   tagline: string;
   logoText?: string;
+  colorScheme?: "harbor" | "peace" | "garden" | "sunrise" | "lavender";
   navLinks: Cta[];
   footerText: string;
 };
@@ -77,4 +78,17 @@ export type HomepageData = {
     description: string;
     cta: Cta;
   };
+};
+
+export type SeasonalCampaign = {
+  title: string;
+  theme: "christmas" | "easter" | "event";
+  eyebrow?: string;
+  headline?: string;
+  description?: string;
+  heroImage?: SanityImage;
+  cta?: Cta;
+  announcement?: string;
+  primaryColor?: string;
+  secondaryColor?: string;
 };

@@ -19,25 +19,25 @@ export default async function VisitPage() {
   return (
     <SectionWrapper className="space-y-10">
       <div className="space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#A57C00]">Visit</p>
-        <h1 className="text-4xl font-bold text-[#111111] md:text-6xl">{page.pageTitle}</h1>
-        <p className="max-w-3xl text-lg text-[#444444]">{page.intro}</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Visit</p>
+        <h1 className="text-4xl font-bold text-[var(--color-secondary-strong)] md:text-6xl">{page.pageTitle}</h1>
+        <p className="max-w-3xl text-lg text-[var(--color-muted)]">{page.intro}</p>
       </div>
       <div className="grid gap-6 md:grid-cols-2">
-        <article className="space-y-5 rounded-2xl border border-black/10 bg-white p-8 shadow-sm">
-          <h2 className="text-2xl font-semibold text-[#111111]">Service Times</h2>
+        <article className="space-y-5 rounded-2xl border border-[var(--color-border)] bg-[var(--color-paper)] p-8 shadow-sm">
+          <h2 className="text-2xl font-semibold text-[var(--color-secondary-strong)]">Service Times</h2>
           {page.serviceTimes?.map((slot: { day: string; time: string; description: string }) => (
-            <div key={`${slot.day}-${slot.time}`} className="border-b border-black/10 pb-4 last:border-b-0">
-              <p className="font-semibold text-[#111111]">
+            <div key={`${slot.day}-${slot.time}`} className="border-b border-[var(--color-border)] pb-4 last:border-b-0">
+              <p className="font-semibold text-[var(--color-secondary-strong)]">
                 {slot.day} - {slot.time}
               </p>
-              <p className="text-sm text-[#444444]">{slot.description}</p>
+              <p className="text-sm text-[var(--color-muted)]">{slot.description}</p>
             </div>
           ))}
         </article>
-        <article className="space-y-5 rounded-2xl border border-black/10 bg-white p-8 shadow-sm">
-          <h2 className="text-2xl font-semibold text-[#111111]">Address</h2>
-          <p className="text-[#444444]">{page.address}</p>
+        <article className="space-y-5 rounded-2xl border border-[var(--color-border)] bg-[var(--color-paper)] p-8 shadow-sm">
+          <h2 className="text-2xl font-semibold text-[var(--color-secondary-strong)]">Address</h2>
+          <p className="text-[var(--color-muted)]">{page.address}</p>
           <Button href={page.mapLink || "https://maps.google.com"}>Open in Maps</Button>
         </article>
       </div>

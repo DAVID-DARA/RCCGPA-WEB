@@ -7,10 +7,11 @@ import clsx from "clsx";
 import { Button } from "@/components/ui/button";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { urlFor } from "@/lib/sanity.client";
-import type { Cta, HeroContent, SanityImage } from "@/types/cms";
+import type { Cta, HeroContent, SanityImage, SeasonalCampaign } from "@/types/cms";
 
 type HeroSectionProps = {
   hero: HeroContent;
+  campaign?: SeasonalCampaign | null;
 };
 
 type HeroSlideView = {
@@ -32,23 +33,30 @@ type HeroSlideSource = {
   secondaryCta?: Cta;
 };
 
-export function HeroSection({ hero }: HeroSectionProps) {
+export function HeroSection({ hero, campaign }: HeroSectionProps) {
+  const shownHero = campaign ? {
+    ...hero,
+    title: campaign.headline || hero.title,
+    subtitle: campaign.description || hero.subtitle,
+    backgroundImage: campaign.heroImage || hero.backgroundImage,
+    primaryCta: campaign.cta || hero.primaryCta
+  } : hero;
   const slides = useMemo<HeroSlideView[]>(() => {
-    const cmsSlides = hero.slides?.filter((slide) => slide.image) || [];
+    const cmsSlides = campaign ? [] : shownHero.slides?.filter((slide) => slide.image) || [];
     const sourceSlides: HeroSlideSource[] = cmsSlides.length
       ? cmsSlides
       : [
           {
-            title: hero.title,
-            subtitle: hero.subtitle,
-            image: hero.backgroundImage,
-            primaryCta: hero.primaryCta,
-            secondaryCta: hero.secondaryCta
+            title: shownHero.title,
+            subtitle: shownHero.subtitle,
+            image: shownHero.backgroundImage,
+            primaryCta: shownHero.primaryCta,
+            secondaryCta: shownHero.secondaryCta
           }
         ];
 
     return sourceSlides.map((slide, index) => {
-      const image = slide.image || (index === 0 ? hero.backgroundImage : undefined);
+      const image = slide.image || (index === 0 ? shownHero.backgroundImage : undefined);
 
       return {
         key: slide._key || `${slide.title}-${index}`,
@@ -56,11 +64,11 @@ export function HeroSection({ hero }: HeroSectionProps) {
         subtitle: slide.subtitle,
         image,
         imageUrl: image ? urlFor(image)?.width(1920).height(1080).fit("crop").url() || null : null,
-        primaryCta: slide.primaryCta || (!cmsSlides.length ? hero.primaryCta : undefined),
-        secondaryCta: slide.secondaryCta || hero.secondaryCta
+        primaryCta: slide.primaryCta || (!cmsSlides.length ? shownHero.primaryCta : undefined),
+        secondaryCta: slide.secondaryCta || shownHero.secondaryCta
       };
     });
-  }, [hero]);
+  }, [shownHero]);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const activeSlide = slides[activeIndex] || slides[0];
@@ -87,7 +95,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
   };
 
   return (
-    <section data-hero-section className="relative -mt-20 isolate min-h-screen overflow-hidden bg-[#111111] text-white">
+    <section data-hero-section className="relative -mt-20 isolate min-h-[82vh] overflow-hidden bg-[var(--color-secondary-strong)] text-white md:min-h-[88vh]">
       <div className="absolute inset-0 -z-20">
         {slides.map((slide, index) =>
           slide.imageUrl ? (
@@ -106,9 +114,10 @@ export function HeroSection({ hero }: HeroSectionProps) {
           ) : null
         )}
       </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/80 via-black/65 to-black/45" />
-      <SectionWrapper className="flex min-h-screen items-center py-28 md:py-36">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[var(--color-secondary-strong)]/95 via-[var(--color-secondary)]/75 to-[var(--color-accent)]/45" />
+      <SectionWrapper className="flex min-h-[82vh] items-center py-28 md:min-h-[88vh] md:py-36">
         <div className="max-w-3xl space-y-8">
+          {campaign?.eyebrow ? <p className="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold tracking-wide text-white backdrop-blur">{campaign.eyebrow}</p> : null}
           {activeSlide.title || activeSlide.subtitle ? (
             <div className="space-y-6">
               {activeSlide.title ? <h1 className="text-4xl font-bold leading-tight md:text-6xl">{activeSlide.title}</h1> : null}
@@ -143,7 +152,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
                     onClick={() => setActiveIndex(index)}
                     className={clsx(
                       "h-2.5 rounded-full transition-all",
-                      index === activeIndex ? "w-8 bg-[#D4AF37]" : "w-2.5 bg-white/55 hover:bg-white/80"
+                      index === activeIndex ? "w-8 bg-[var(--color-accent)]" : "w-2.5 bg-white/55 hover:bg-white/80"
                     )}
                     aria-label={`Show hero slide ${index + 1}`}
                     aria-current={index === activeIndex ? "true" : undefined}
