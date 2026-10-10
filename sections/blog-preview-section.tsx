@@ -9,12 +9,12 @@ type BlogPreviewSectionProps = {
 
 export function BlogPreviewSection({ posts }: BlogPreviewSectionProps) {
   return (
-    <section className="bg-[#F8F8F8]">
+    <section className="bg-[var(--color-surface)]">
       <SectionWrapper className="space-y-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#A57C00]">Latest Articles</p>
-            <h2 className="text-3xl font-bold text-[#111111] md:text-5xl">From our blog</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Latest Articles</p>
+            <h2 className="text-3xl font-bold text-[var(--color-secondary-strong)] md:text-5xl">From our blog</h2>
           </div>
           <Button href="/blog" variant="ghost">
             Visit Blog

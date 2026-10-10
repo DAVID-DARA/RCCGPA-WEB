@@ -99,14 +99,14 @@ export function Navbar({ settings }: NavbarProps) {
     <header
       className={clsx(
         "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
-        isOverlay ? "border-white/15 bg-white/10 shadow-none backdrop-blur-xl" : "border-black/10 bg-white/95 shadow-sm backdrop-blur-md"
+        isOverlay ? "border-white/15 bg-white/10 shadow-none backdrop-blur-xl" : "border-[var(--color-border)] bg-[var(--color-paper)]/95 shadow-sm backdrop-blur-md"
       )}
     >
       <nav className="mx-auto flex h-20 max-w-[1280px] items-center justify-between px-4 md:px-8">
         <Link
           href="/"
           onClick={closeMenus}
-          className={clsx("text-sm font-bold uppercase tracking-[0.08em] md:text-base", isOverlay ? "text-white" : "text-[#111111]")}
+          className={clsx("text-sm font-bold uppercase tracking-[0.08em] md:text-base", isOverlay ? "text-white" : "text-[var(--color-secondary-strong)]")}
         >
           {brand}
         </Link>
@@ -137,7 +137,7 @@ export function Navbar({ settings }: NavbarProps) {
                       type="button"
                       className={clsx(
                         "inline-flex items-center gap-1.5 text-[13px] font-medium outline-none transition-colors",
-                        isOverlay ? "text-white/90 hover:text-white" : "text-[#1A1A1A] hover:text-black"
+                        isOverlay ? "text-white/90 hover:text-white" : "text-[var(--color-secondary-strong)] hover:text-black"
                       )}
                       aria-haspopup="menu"
                       aria-expanded={isOpen}
@@ -147,9 +147,9 @@ export function Navbar({ settings }: NavbarProps) {
                       <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
                     </button>
                     <div className={`absolute left-0 top-full z-50 min-w-[220px] pt-2 transition-opacity duration-150 ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}>
-                      <div className="border border-black/10 bg-white/95 p-2 shadow-lg backdrop-blur-md">
+                      <div className="border border-[var(--color-border)] bg-[var(--color-paper)]/95 p-2 shadow-lg backdrop-blur-md">
                         {link.children.map((child) => (
-                          <Link key={`${child.label}-${child.href}`} href={child.href} onClick={closeMenus} className="block px-3 py-2 text-[13px] text-[#111111] outline-none hover:bg-[#F5F5F5]">
+                          <Link key={`${child.label}-${child.href}`} href={child.href} onClick={closeMenus} className="block px-3 py-2 text-[13px] text-[var(--color-secondary-strong)] outline-none hover:bg-[var(--color-surface)]">
                             {child.label}
                           </Link>
                         ))}
@@ -162,7 +162,7 @@ export function Navbar({ settings }: NavbarProps) {
                     onClick={closeMenus}
                     className={clsx(
                       "text-[13px] font-medium transition-colors",
-                      isOverlay ? "text-white/90 hover:text-white" : "text-[#1A1A1A] hover:text-black"
+                      isOverlay ? "text-white/90 hover:text-white" : "text-[var(--color-secondary-strong)] hover:text-black"
                     )}
                   >
                     {link.label}
@@ -175,34 +175,34 @@ export function Navbar({ settings }: NavbarProps) {
 
         <Dialog.Root open={mobileMenuOpen} onOpenChange={(open) => setMobileMenu({ open, pathname })}>
           <Dialog.Trigger
-            className={clsx("inline-flex items-center justify-center rounded-md p-2 md:hidden", isOverlay ? "text-white" : "text-[#111111]")}
+            className={clsx("inline-flex items-center justify-center rounded-md p-2 md:hidden", isOverlay ? "text-white" : "text-[var(--color-secondary-strong)]")}
             aria-label="Open menu"
           >
             <Menu className="h-5 w-5" />
           </Dialog.Trigger>
           <Dialog.Portal>
             <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 md:hidden" />
-            <Dialog.Content className="fixed right-0 top-0 z-50 h-full w-[88%] max-w-sm overflow-y-auto bg-white p-6 shadow-xl md:hidden">
+            <Dialog.Content className="fixed right-0 top-0 z-50 h-full w-[88%] max-w-sm overflow-y-auto bg-[var(--color-paper)] p-6 shadow-xl md:hidden">
               <div className="mb-8 flex items-center justify-between">
-                <p className="text-sm font-bold uppercase tracking-[0.08em] text-[#111111]">{brand}</p>
-                <Dialog.Close className="inline-flex items-center justify-center rounded-md p-2 text-[#111111]" aria-label="Close menu">
+                <p className="text-sm font-bold uppercase tracking-[0.08em] text-[var(--color-secondary-strong)]">{brand}</p>
+                <Dialog.Close className="inline-flex items-center justify-center rounded-md p-2 text-[var(--color-secondary-strong)]" aria-label="Close menu">
                   <X className="h-5 w-5" />
                 </Dialog.Close>
               </div>
               <div className="space-y-5">
                 {navLinks.map((link) => (
-                  <div key={`${link.label}-${link.href || "group-mobile"}`} className="space-y-3 border-b border-black/10 pb-4">
+                  <div key={`${link.label}-${link.href || "group-mobile"}`} className="space-y-3 border-b border-[var(--color-border)] pb-4">
                     {link.href ? (
-                      <Link href={link.href} onClick={closeMenus} className="block text-sm font-semibold text-[#111111]">
+                      <Link href={link.href} onClick={closeMenus} className="block text-sm font-semibold text-[var(--color-secondary-strong)]">
                         {link.label}
                       </Link>
                     ) : (
-                      <p className="text-sm font-semibold text-[#111111]">{link.label}</p>
+                      <p className="text-sm font-semibold text-[var(--color-secondary-strong)]">{link.label}</p>
                     )}
                     {link.children?.length ? (
                       <div className="space-y-2 pl-3">
                         {link.children.map((child) => (
-                          <Link key={`${child.label}-${child.href}`} href={child.href} onClick={closeMenus} className="block text-sm text-[#333333]">
+                          <Link key={`${child.label}-${child.href}`} href={child.href} onClick={closeMenus} className="block text-sm text-[var(--color-muted)]">
                             {child.label}
                           </Link>
                         ))}

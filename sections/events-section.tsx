@@ -12,8 +12,8 @@ export function EventsSection({ events }: EventsSectionProps) {
     <SectionWrapper className="space-y-10">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#A57C00]">Upcoming Events</p>
-          <h2 className="text-3xl font-bold text-[#111111] md:text-5xl">Join us this week</h2>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Upcoming Events</p>
+          <h2 className="text-3xl font-bold text-[var(--color-secondary-strong)] md:text-5xl">Join us this week</h2>
         </div>
         <Button href="/events" variant="ghost">
           View All Events

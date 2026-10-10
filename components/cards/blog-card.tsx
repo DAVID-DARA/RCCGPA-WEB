@@ -10,7 +10,7 @@ type BlogCardProps = {
 export function BlogCard({ post }: BlogCardProps) {
   const imageUrl = post.coverImage ? urlFor(post.coverImage)?.width(960).height(560).url() : null;
   return (
-    <article className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm">
+    <article className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-paper)] shadow-sm">
       {imageUrl && (
         <Image
           src={imageUrl}
@@ -21,12 +21,12 @@ export function BlogCard({ post }: BlogCardProps) {
         />
       )}
       <div className="space-y-4 p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A57C00]">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">
           {new Date(post.publishedAt).toLocaleDateString()}
         </p>
-        <h3 className="text-2xl font-semibold leading-tight text-[#151515]">{post.title}</h3>
-        <p className="line-clamp-3 text-sm leading-relaxed text-[#505050]">{post.excerpt}</p>
-        <Link className="text-sm font-semibold text-[#A57C00] hover:underline" href={`/blog/${post.slug}`}>
+        <h3 className="text-2xl font-semibold leading-tight text-[var(--color-secondary-strong)]">{post.title}</h3>
+        <p className="line-clamp-3 text-sm leading-relaxed text-[var(--color-muted)]">{post.excerpt}</p>
+        <Link className="text-sm font-semibold text-[var(--color-accent)] hover:underline" href={`/blog/${post.slug}`}>
           Read More
         </Link>
       </div>

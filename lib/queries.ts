@@ -1,12 +1,14 @@
+import { cache } from "react";
 import { groq } from "next-sanity";
 import { hasSanityConfig, sanityClient } from "@/lib/sanity.client";
-import type { BlogPost, EventItem, HomepageData, SiteSettings } from "@/types/cms";
+import type { BlogPost, EventItem, HomepageData, SeasonalCampaign, SiteSettings } from "@/types/cms";
 
 const settingsQuery = groq`
   *[_type == "siteSettings"][0]{
     title,
     tagline,
     logoText,
+    colorScheme,
     footerText,
     navLinks[]{label, href}
   }
@@ -18,6 +20,7 @@ const homepageQuery = groq`
       title,
       tagline,
       logoText,
+      colorScheme,
       footerText,
       navLinks[]{label, href}
     },
@@ -160,6 +163,14 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
   if (!hasSanityConfig || !sanityClient) return null;
   return sanityClient.fetch(settingsQuery);
 }
+
+export const getActiveCampaign = cache(async (): Promise<SeasonalCampaign | null> => {
+  if (!hasSanityConfig || !sanityClient) return null;
+  const now = new Date().toISOString();
+  return sanityClient.fetch<SeasonalCampaign | null>(groq`*[_type == "seasonalCampaign" && enabled == true && startsAt <= $now && endsAt > $now] | order(startsAt desc)[0]{
+    title, theme, eyebrow, headline, description, heroImage, cta, announcement, primaryColor, secondaryColor
+  }`, { now });
+});
 
 export async function getHomepageData(): Promise<HomepageData | null> {
   if (!hasSanityConfig || !sanityClient) return null;

@@ -8,8 +8,8 @@ export default async function EventsPage() {
   return (
     <SectionWrapper className="space-y-10">
       <div className="space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#A57C00]">Events</p>
-        <h1 className="text-4xl font-bold text-[#111111] md:text-6xl">Upcoming Programs</h1>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Events</p>
+        <h1 className="text-4xl font-bold text-[var(--color-secondary-strong)] md:text-6xl">Upcoming Programs</h1>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {events.map((event) => (

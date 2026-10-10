@@ -21,16 +21,16 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
   return (
     <SectionWrapper className="max-w-4xl space-y-8">
       <div className="space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#A57C00]">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">
           {new Date(event.date).toLocaleDateString()}
         </p>
-        <h1 className="text-4xl font-bold text-[#111111] md:text-6xl">{event.title}</h1>
-        {event.location ? <p className="text-lg text-[#444444]">{event.location}</p> : null}
+        <h1 className="text-4xl font-bold text-[var(--color-secondary-strong)] md:text-6xl">{event.title}</h1>
+        {event.location ? <p className="text-lg text-[var(--color-muted)]">{event.location}</p> : null}
       </div>
       {imageUrl ? (
         <Image src={imageUrl} alt={event.coverImage?.alt || event.title} width={1280} height={720} className="rounded-2xl object-cover" />
       ) : null}
-      <p className="text-base leading-relaxed text-[#333333]">{event.excerpt}</p>
+      <p className="text-base leading-relaxed text-[var(--color-muted)]">{event.excerpt}</p>
       <PortableRichText value={event.body} />
       <Button href="/events">Back to Events</Button>
     </SectionWrapper>

@@ -20,6 +20,7 @@ export default defineConfig({
           .items([
             S.listItem().title("Site Settings").id("siteSettings").child(S.document().schemaType("siteSettings").documentId("siteSettings")),
             S.listItem().title("Homepage").id("homepage").child(S.document().schemaType("homepage").documentId("homepage")),
+            S.documentTypeListItem("seasonalCampaign").title("Seasonal Campaigns"),
             S.divider(),
             S.documentTypeListItem("post").title("Blog Posts"),
             S.documentTypeListItem("event").title("Events"),

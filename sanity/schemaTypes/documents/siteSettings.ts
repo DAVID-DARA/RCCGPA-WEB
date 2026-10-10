@@ -24,6 +24,23 @@ export const siteSettings = defineType({
       description: "Text shown in the navbar and mobile menu."
     }),
     defineField({
+      name: "colorScheme",
+      title: "Site Color Scheme",
+      type: "string",
+      description: "Choose the shared site palette. Harbor is the warm, welcoming default.",
+      options: {
+        list: [
+          { title: "Harbor — Teal, coral and warm cream", value: "harbor" },
+          { title: "Peace Assembly — Red, blue and white", value: "peace" },
+          { title: "Garden — Forest green and soft sage", value: "garden" },
+          { title: "Sunrise — Terracotta, plum and ivory", value: "sunrise" },
+          { title: "Lavender — Soft violet and rose", value: "lavender" }
+        ],
+        layout: "radio"
+      },
+      initialValue: "harbor"
+    }),
+    defineField({
       name: "navLinks",
       title: "Navigation Links",
       type: "array",
