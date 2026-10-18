@@ -8,12 +8,10 @@ Production-ready Next.js frontend for RCCG Peace Assembly, built with:
 
 ## Run locally
 
-1. Copy environment variables:
-   - `cp .env.example .env.local`
-2. Add your Sanity project values.
-3. Install dependencies:
+1. Create `.env.local` in the project root and add your Sanity project values (see the environment variable names below).
+2. Install dependencies:
    - `npm install`
-4. Start dev server:
+3. Start dev server:
    - `npm run dev`
 
 ## Sanity Studio
@@ -26,7 +24,39 @@ Deploy the Studio to Sanity hosting with:
 
 - `npm run studio:deploy`
 
-Use Sanity project members and roles in the Sanity dashboard to control who can edit content.
+The hosted Studio is a separate admin site at a `*.sanity.studio` address. Its files can be reached publicly, but editors must sign in to Sanity and have project membership with a role that grants write access. Invite each editor separately; do not share an administrator login.
+
+The Studio and CLI use `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET`; the Next.js website separately uses `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET`. Set both pairs to the same project and dataset in `.env.local`. The `SANITY_STUDIO_` prefix is required for values used by the Studio's browser bundle. These IDs are public configuration, not secrets. Never put tokens in `SANITY_STUDIO_*` or `NEXT_PUBLIC_*` variables. If the Studio project ID is missing, the CLI config stops with a direct setup message instead of trying to start against an empty project.
+
+### Connect the live website
+
+1. In [Sanity Manage](https://www.sanity.io/manage), open the Peace Assembly project and copy its Project ID. Confirm the dataset name (this project defaults to `production`).
+2. In `.env.local`, set the frontend and Studio values to the same project and dataset:
+
+   ```env
+   NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_SANITY_DATASET=production
+   NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
+   SANITY_STUDIO_PROJECT_ID=your_project_id
+   SANITY_STUDIO_DATASET=production
+   ```
+
+3. Sign into Sanity from the project folder if needed, then deploy the Studio:
+
+   ```bash
+   npx sanity login
+   npm run studio:deploy
+   ```
+
+   On the first deploy, choose an available Studio hostname. Share the resulting `https://<hostname>.sanity.studio` URL with editors. Sanity-hosted Studio deployments use Sanity login and project permissions; there is no public write token in the Studio URL.
+4. In the hosting provider for the public website (for example, Vercel), add the same three `NEXT_PUBLIC_SANITY_*` values to the site's environment variables and redeploy. The deployed Next.js server will then fetch published content from that Sanity project and dataset.
+5. In the Studio, create or update the singleton documents under Site Settings and Homepage, then publish them. Add Events, Blog Posts, and other content as needed. The website has fallback text when these documents are missing.
+
+This frontend currently makes published-content queries without a token (`lib/sanity.client.ts` uses `useCdn: true`). For an ordinary public church website, a **public dataset** is the simplest setup: visitors can read published content, but the public project ID and dataset name do not give them write access. Sanity requires authentication and write permissions to modify documents. A private dataset needs a read token, which this app does not currently configure; that token must be kept server-only and must never be named `NEXT_PUBLIC_*` or added to browser code.
+
+The hosted Studio deploy handles its own Studio origin. The public site currently renders Sanity queries on the server, so it normally does not need its own Sanity CORS origin. If the app later queries Sanity directly from browser JavaScript, add only the exact production origin in Sanity Manage, and do not enable credentials for a public, read-only frontend. CORS is a browser restriction, not a replacement for authentication or permissions.
+
+If a write token was ever added to the public site, repository, or client bundle, revoke it in Sanity Manage and replace it as needed. Keep project IDs and dataset names in `NEXT_PUBLIC_*` variables only; never expose a personal, robot, or write token there.
 
 ## Color themes
 
